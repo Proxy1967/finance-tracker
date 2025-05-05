@@ -1,0 +1,16 @@
+[
+    {
+        "amount": 100,
+        "date": "2025-05-05",
+        "category": "salary",
+        "description": "Monthly paycheck",
+        "type": "income"
+    },
+    {
+        "amount": 50,
+        "date": "2025-05-06",
+        "category": "groceries",
+        "description": "Food",
+        "type": "expense"
+    }
+]
