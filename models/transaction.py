@@ -1,6 +1,9 @@
 class Transaction:
     def __init__(self, amount, date, category, description, type):
-        self.amount = amount
+        if type == "expense":
+            self.amount = -abs(amount)
+        else:
+            self.amount = amount
         self.date = date
         self.category = category
         self.description = description
@@ -12,15 +15,15 @@ class Transaction:
             "date": self.date,
             "category": self.category,
             "description": self.description,
-            "type": self.type
+            "type": self.type,
         }
 
     @classmethod
     def from_dict(cls, data):
         return cls(
-            amount = data["amount"],
-            date = data["date"],
-            category = data["category"],
-            description = data["description"],
-            type = data["type"]
+            amount=data["amount"],
+            date=data["date"],
+            category=data["category"],
+            description=data["description"],
+            type=data["type"],
         )
