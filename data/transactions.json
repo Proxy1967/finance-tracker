@@ -1,16 +1,72 @@
 [
     {
-        "amount": 100,
-        "date": "2025-05-05",
+        "amount": 1000,
+        "date": "2025-03-05",
         "category": "salary",
         "description": "Monthly paycheck",
         "type": "income"
     },
     {
-        "amount": 50,
-        "date": "2025-05-06",
+        "amount": 1000,
+        "date": "2025-04-05",
+        "category": "salary",
+        "description": "Monthly paycheck",
+        "type": "income"
+    },
+    {
+        "amount": 500,
+        "date": "2025-05-05",
+        "category": "transport",
+        "description": "Transport",
+        "type": "income"
+    },
+    {
+        "amount": -100,
+        "date": "2025-03-21",
         "category": "groceries",
         "description": "Food",
         "type": "expense"
+    },
+    {
+        "amount": -100,
+        "date": "2025-03-21",
+        "category": "misc",
+        "description": "Gift",
+        "type": "expense"
+    },
+    {
+        "amount": -100,
+        "date": "2025-04-05",
+        "category": "groceries",
+        "description": "Food",
+        "type": "expense"
+    },
+    {
+        "amount": -100,
+        "date": "2025-04-10",
+        "category": "groceries",
+        "description": "Food",
+        "type": "expense"
+    },
+    {
+        "amount": -100,
+        "date": "2025-05-06",
+        "category": "misc",
+        "description": "Gift",
+        "type": "expense"
+    },
+    {
+        "amount": -100,
+        "date": "2024-05-06",
+        "category": "misc",
+        "description": "Gym",
+        "type": "expense"
+    },
+    {
+        "amount": 1000,
+        "date": "2024-04-05",
+        "category": "salary",
+        "description": "Monthly paycheck",
+        "type": "income"
     }
 ]
