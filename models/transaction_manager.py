@@ -1,5 +1,6 @@
 from models.transaction import Transaction
 import json
+from datetime import datetime
 
 
 class TransactionManager:
@@ -58,25 +59,49 @@ class TransactionManager:
                 total_by_date[t.date] += t.amount
         return total_by_date
 
+    def get_sorted_expenses_by_date(self, descending=True):
+        sorted_total_by_date = sorted(
+            self.get_expenses_by_date().items(),
+            key=lambda item: datetime.strptime(item[0], "%d-%m-%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_total_by_date)
+
     def get_expenses_by_month(self):
         total_by_month = {}
         for t in self.transactions:
             if t.type == "expense":
-                month = t.date[:7]
+                month = t.date[3:]
                 if month not in total_by_month:
                     total_by_month[month] = 0
                 total_by_month[month] += t.amount
         return total_by_month
 
+    def get_sorted_expenses_by_month(self, descending=True):
+        sorted_total_by_month = sorted(
+            self.get_expenses_by_month().items(),
+            key=lambda item: datetime.strptime(item[0], "%m-%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_total_by_month)
+
     def get_expenses_by_year(self):
         total_by_year = {}
         for t in self.transactions:
             if t.type == "expense":
-                year = t.date[:4]
+                year = t.date[6:]
                 if year not in total_by_year:
                     total_by_year[year] = 0
                 total_by_year[year] += t.amount
         return total_by_year
+
+    def get_sorted_expenses_by_year(self, descending=True):
+        sorted_total_by_year = sorted(
+            self.get_expenses_by_year().items(),
+            key=lambda item: datetime.strptime(item[0], "%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_total_by_year)
 
     # CALCULATIONS FOR INCOME
 
@@ -100,21 +125,37 @@ class TransactionManager:
         total_by_month = {}
         for t in self.transactions:
             if t.type == "income":
-                month = t.date[:7]
+                month = t.date[3:]
                 if month not in total_by_month:
                     total_by_month[month] = 0
                 total_by_month[month] += t.amount
         return total_by_month
 
+    def get_sorted_income_by_month(self, descending=True):
+        sorted_total_by_month = sorted(
+            self.get_income_by_month().items(),
+            key=lambda item: datetime.strptime(item[0], "%m-%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_total_by_month)
+
     def get_income_by_year(self):
         total_by_year = {}
         for t in self.transactions:
             if t.type == "income":
-                year = t.date[:4]
+                year = t.date[6:]
                 if year not in total_by_year:
                     total_by_year[year] = 0
                 total_by_year[year] += t.amount
         return total_by_year
+
+    def get_sorted_income_by_year(self, descending=True):
+        sorted_total_by_year = sorted(
+            self.get_income_by_year().items(),
+            key=lambda item: datetime.strptime(item[0], "%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_total_by_year)
 
     # CALCULATIONS FOR NET WORTH
 
@@ -130,6 +171,14 @@ class TransactionManager:
         )
         return net_worth_by_month
 
+    def get_sorted_net_worth_by_month(self, descending=True):
+        sorted_net_worth_by_month = sorted(
+            self.get_net_worth_by_month().items(),
+            key=lambda item: datetime.strptime(item[0], "%m-%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_net_worth_by_month)
+
     def get_net_worth_by_year(self):
         net_worth_by_year = {}
         total_income_by_year = self.get_income_by_year()
@@ -138,6 +187,14 @@ class TransactionManager:
             self.merge_dicts(total_income_by_year, total_expenses_by_year)
         )
         return net_worth_by_year
+
+    def get_sorted_net_worth_by_year(self, descending=True):
+        sorted_net_worth_by_year = sorted(
+            self.get_net_worth_by_year().items(),
+            key=lambda item: datetime.strptime(item[0], "%Y"),
+            reverse=descending,
+        )
+        return dict(sorted_net_worth_by_year)
 
     # HELPER FUNCTIONS
 
